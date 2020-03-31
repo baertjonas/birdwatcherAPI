@@ -12,7 +12,7 @@ namespace birdwatcherAPI.Model
             //Create the db if not yet exists
             context.Database.EnsureCreated();
 
-            //zijn er al Families?
+            //zijn er al families?
             if (!context.Families.Any())
             {
                 //create new Waarneming
@@ -20,10 +20,8 @@ namespace birdwatcherAPI.Model
                 {
                     FamilieNaam = "Roofvogel"
             };
-
             //add Familie to the database
             context.Families.Add(FAM);
-
             //save changes to the database
             context.SaveChanges();
             }
@@ -52,45 +50,48 @@ namespace birdwatcherAPI.Model
             }
 
             //zijn er al locaties?
-            if (!context.Locaties.Any())
+            if (!context.Spotters.Any())
             {
                 //nieuwe vogel
-                var LOC = new Locatie()
+                var SPO = new Spotter()
                 {
-                    Naam = "De Zegge",
-                    Straat = "Mosselgoren",
-                    Nummer = 3,
-                    Postcode = 2440,
-                    Gemeente = "Geel",
-                    GPSbreedte = "51°12'04.1\"N",
-                    GPSlengte = "4°56'42.1\"E"
+                    Voornaam = "Tuur",
+                    Achternaam = "Baert",
+                    Straat = "Camelialei",
+                    Nummer = 13,
+                    Postcode = 2170,
+                    Gemeente = "Merksem",
+                    Email = "tuur.baert@icloud.com"
                 };
                 //locatie toevoegen
-                context.Locaties.Add(LOC);
+                context.Spotters.Add(SPO);
                 //save changes to the database
                 context.SaveChanges();
             }
 
-            //are there already Waarnemingen present?
+            //zijn er al waarnemingen?
             if (!context.Waarnemingen.Any())
             {
-                //create new Waarneming
+                //nieuwe waarneming
                 var WN1 = new Waarneming()
                 {
                     Geslacht = Geslacht.Man,
                     DatumTijd = new DateTime(2020, 3, 21, 12, 34, 00),
+                    GeoBreedte = GeoLocation.GeoToString("N",51,23,25.528),//"N51°23'25.528\"",
+                    GeoLengte = GeoLocation.GeoToString("E", 4, 25, 49.343),
                     Vogel = context.Vogels.Find(1),
-                    Locatie = context.Locaties.Find(1)
+                    Spotter = context.Spotters.Find(1)
                 };
                 var WN2 = new Waarneming()
                 {
                     Geslacht = Geslacht.Vrouw,
                     DatumTijd = new DateTime(2020, 2, 28, 17, 31, 00),
+                    GeoBreedte = GeoLocation.GeoToString("N", 51,20, 56.038),
+                    GeoLengte = GeoLocation.GeoToString("E", 4, 36, 26.202),
                     Vogel = context.Vogels.Find(2),
-                    Locatie = context.Locaties.Find(1)
-
+                    Spotter = context.Spotters.Find(1)
                 };
-                //add Waarneming to the database
+                //waarneming toevoegen
                 context.Waarnemingen.Add(WN1);
                 context.Waarnemingen.Add(WN2);
                 //save changes to the database

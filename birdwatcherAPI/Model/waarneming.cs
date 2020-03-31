@@ -1,4 +1,5 @@
 ﻿using System;
+
 namespace birdwatcherAPI.Model
 {
     public enum Geslacht { Man, Vrouw }
@@ -15,9 +16,13 @@ namespace birdwatcherAPI.Model
 
         public Geslacht Geslacht { get; set; }
 
+        public string GeoBreedte { get; set; }
+
+        public string GeoLengte { get; set; }
+
         public Vogel Vogel { get; set; }
 
-        public Locatie Locatie { get; set; }
+        public Spotter Spotter { get; set; }
 
     }
 }

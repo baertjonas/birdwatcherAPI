@@ -16,4 +16,7 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.2" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="3.1.2" />
   </ItemGroup>
+  <ItemGroup>
+    <None Remove="Birdwatcher.db" />
+  </ItemGroup>
 </Project>

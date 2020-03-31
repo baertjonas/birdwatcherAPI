@@ -11,10 +11,12 @@ namespace birdwatcherAPI.Model
 
         public DbSet<Vogel> Vogels { get; set; }
 
-        public DbSet<Locatie> Locaties { get; set; }
+        public DbSet<Spotter> Spotters { get; set; }
 
         public DbSet<Waarneming> Waarnemingen { get; set; }
 
         public DbSet<Familie> Families { get; set; }
+
+
     }
 }
