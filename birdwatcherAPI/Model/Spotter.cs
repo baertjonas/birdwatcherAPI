@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
 
 namespace birdwatcherAPI.Model
 {
@@ -11,8 +13,10 @@ namespace birdwatcherAPI.Model
 
         public int ID { get; set; }
 
+        [Required]
         public string Voornaam { get; set; }
 
+        [Required]
         public string Achternaam { get; set; }
 
         public string Straat { get; set; }
@@ -23,8 +27,10 @@ namespace birdwatcherAPI.Model
 
         public string Gemeente { get; set; }
 
+        [EmailAddress]
         public string Email { get; set; }
 
+        [JsonIgnore]
         public ICollection<Waarneming> Waarnemingen {get; set;}
 
     }

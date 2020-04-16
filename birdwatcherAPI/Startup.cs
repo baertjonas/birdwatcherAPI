@@ -32,6 +32,11 @@ namespace birdwatcherAPI
                 )
             );
 
+            services.Configure<ApiBehaviorOptions>(options =>
+            {
+                options.SuppressModelStateInvalidFilter = true;
+            });
+
             services.AddControllers();
         }
 

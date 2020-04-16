@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text.Json.Serialization;
 
 namespace birdwatcherAPI.Model
 {
@@ -11,8 +12,9 @@ namespace birdwatcherAPI.Model
 
         public int ID { get; set; }
 
-        public string FamilieNaam { get; set; }
+        public string Naam { get; set; }
 
+        [JsonIgnore]
         public ICollection<Vogel> Vogels {get; set;}
     }
 }
