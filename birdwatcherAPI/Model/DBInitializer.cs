@@ -83,8 +83,10 @@ namespace birdwatcherAPI.Model
                 {
                     Geslacht = Geslacht.Man,
                     DatumTijd = new DateTime(2020, 3, 21, 12, 34, 00),
-                    GeoBreedte = GeoLocation.GeoToString("N",51,23,25.528),//"N51°23'25.528\"",
-                    GeoLengte = GeoLocation.GeoToString("E", 4, 25, 49.343),
+                    GeoBreedte = 34.894,
+                    GeoLengte = 45.678,
+                    //GeoBreedte = GeoLocation.GeoToString("N",51,23,25.528),//"N51°23'25.528\"",
+                    //GeoLengte = GeoLocation.GeoToString("E", 4, 25, 49.343),
                     Vogel = context.Vogels.Find(1),
                     Spotter = context.Spotters.Find(1)
                 };
@@ -92,8 +94,10 @@ namespace birdwatcherAPI.Model
                 {
                     Geslacht = Geslacht.Vrouw,
                     DatumTijd = new DateTime(2020, 2, 28, 17, 31, 00),
-                    GeoBreedte = GeoLocation.GeoToString("N", 51,20, 56.038),
-                    GeoLengte = GeoLocation.GeoToString("E", 4, 36, 26.202),
+                    GeoBreedte = 34.894,
+                    GeoLengte = 45.678,
+                    //GeoBreedte = GeoLocation.GeoToString("N", 51,20, 56.038),
+                    //GeoLengte = GeoLocation.GeoToString("E", 4, 36, 26.202),
                     Vogel = context.Vogels.Find(2),
                     Spotter = context.Spotters.Find(1)
                 };

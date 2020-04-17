@@ -173,5 +173,55 @@ namespace birdwatcherAPI.Controllers
             context.SaveChanges();
             return Ok(orgWaarneming);
         }
+
+        [Route("{id}/spotters")]
+        // GET api/waarnemingen/ID/spotters -> laat de spotter zien van waarneming met id
+        [HttpGet]
+        public IActionResult GetSpotters(int id)
+        {
+            IQueryable<Spotter> query = from s in context.Spotters
+                                        from w in context.Waarnemingen
+                                        where s.ID == w.SpotterID
+                                        where w.ID == id
+                                        select new Spotter
+                                        {
+                                            ID = s.ID,
+                                            Voornaam = s.Voornaam,
+                                            Achternaam = s.Achternaam,
+                                            Straat = s.Straat,
+                                            Nummer = s.Nummer,
+                                            Postcode = s.Postcode,
+                                            Gemeente = s.Gemeente,
+                                            Email = s.Email
+                                        };
+
+            if (query.ToList().Count() == 0) return NotFound();
+
+            return Ok(query.ToList());
+        }
+
+        [Route("{id}/vogels")]
+        // GET api/waarnemingen/ID/vogels -> laat de vogel zien van waarneming met id
+        [HttpGet]
+        public IActionResult GetVogels(int id)
+        {
+            IQueryable<Vogel> query = from v in context.Vogels
+                                      from w in context.Waarnemingen
+                                      where v.ID == w.VogelID
+                                      where w.ID == id
+                                      select new Vogel
+                                      {
+                                          ID = v.ID,
+                                          Naam = v.Naam,
+                                          Latijns = v.Latijns,
+                                          Frans = v.Frans,
+                                          Engels = v.Engels,
+                                          Duits = v.Duits
+                                      };
+
+            if (query.ToList().Count() == 0) return NotFound();
+
+            return Ok(query.ToList());
+        }
     }
 }

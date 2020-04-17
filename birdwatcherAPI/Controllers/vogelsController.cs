@@ -112,7 +112,7 @@ namespace birdwatcherAPI
                                             Nummer = s.Nummer,
                                             Postcode = s.Postcode,
                                             Gemeente = s.Gemeente,
-                                            Email = s.Email,
+                                            Email = s.Email
                                         };
 
             if (query.ToList().Count() == 0) return NotFound();
