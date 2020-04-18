@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using birdwatcherAPI.Model;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace birdwatcherAPI.Controllers
 {
+    [DisableCors]
     [Route("api/[controller]")]
     public class spottersController : Controller
     {

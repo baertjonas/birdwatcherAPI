@@ -5,9 +5,11 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using birdwatcherAPI.Model;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Cors;
 
 namespace birdwatcherAPI.Controllers
 {
+    [DisableCors]
     [Route("api/[controller]")]
     public class waarnemingenController : Controller
     {
