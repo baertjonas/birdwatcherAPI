@@ -13,21 +13,39 @@
     </ion-toolbar>
   </ion-header>
 
-  <form (submit)="submit()" novalidate>
+  <form novalidate>
     <ion-item lines="full">
-      <ion-label position="floating">Name</ion-label>
-      <ion-input type="text" required></ion-input>
+      <ion-label position="floating">ID</ion-label>
+      <ion-input type="text" [(ngModel)]="vogel.id" [ngModelOptions]="{standalone: true}"></ion-input>
+    </ion-item>
+    <ion-item lines="full">
+      <ion-label position="floating">Naam</ion-label>
+      <ion-input type="text" required [(ngModel)]="vogel.naam" [ngModelOptions]="{standalone: true}"></ion-input>
     </ion-item>
     <ion-item lines="full">
       <ion-label position="floating">Latijnse naam</ion-label>
-      <ion-input type="text" required></ion-input>
+      <ion-input type="text" [(ngModel)]="vogel.latijns" [ngModelOptions]="{standalone: true}"></ion-input>
     </ion-item>
     <ion-item lines="full">
       <ion-label position="floating">Franse naam</ion-label>
-      <ion-input type="text" required></ion-input>
+      <ion-input type="text" [(ngModel)]="vogel.frans" [ngModelOptions]="{standalone: true}"></ion-input>
     </ion-item>
-    <ion-row>
-        <ion-button type="submit" color="primary" expand="block">Add</ion-button>
+    <ion-item lines="full">
+      <ion-label position="floating">Engelse naam</ion-label>
+      <ion-input type="text" [(ngModel)]="vogel.engels" [ngModelOptions]="{standalone: true}"></ion-input>
+    </ion-item>
+      <ion-item lines="full">
+      <ion-label position="floating">Duitse naam</ion-label>
+      <ion-input type="text" [(ngModel)]="vogel.duits" [ngModelOptions]="{standalone: true}"></ion-input>
+    </ion-item>
+    <ion-row align-items-end>
+        <ion-button color="secondary" expand="block" (click)=reset()>Reset</ion-button>  
+        <ion-button color="primary" (click)=post() expand="block">Add</ion-button>
+        <ion-button *ngIf="vogel.id != 0" color="secondary" expand="block" (click)=getById()>Get ID {{vogel.id}}</ion-button>
+        <ion-button *ngIf="vogel.id != 0" color="warning" expand="block" (click)=put()>Edit ID {{vogel.id}}</ion-button>
+        <ion-button *ngIf="vogel.id != 0" color="danger" expand="block" (click)=delete()>Delete ID {{vogel.id}}</ion-button>
+        
+
     </ion-row>
   </form>
    

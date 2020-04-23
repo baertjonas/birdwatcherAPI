@@ -35,7 +35,6 @@ namespace birdwatcherAPI
         {
             var vogel = context.Vogels
                 .SingleOrDefault(x => x.ID == id);
-
             if (vogel == null) return NotFound();
 
             return Ok(vogel);
@@ -54,7 +53,9 @@ namespace birdwatcherAPI
         [HttpDelete("{id}")]
         public IActionResult DeleteVogel(int id)
         {
-            var vogel = context.Vogels.Find(id);
+            var vogel = context.Vogels
+                .SingleOrDefault(x => x.ID == id);
+
             if (vogel == null)
                 return NotFound();
 

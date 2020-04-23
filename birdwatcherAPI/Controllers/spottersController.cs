@@ -36,7 +36,6 @@ namespace birdwatcherAPI.Controllers
         {
             var spotter = context.Spotters
                 .SingleOrDefault(x => x.ID == id);
-
             if (spotter == null) return NotFound();
 
             return Ok(spotter);
@@ -55,9 +54,9 @@ namespace birdwatcherAPI.Controllers
         [HttpDelete("{id}")]
         public IActionResult DeleteSpotter(int id)
         {
-            var spotter = context.Spotters.Find(id);
-            if (spotter == null)
-                return NotFound();
+            var spotter = context.Spotters
+                .SingleOrDefault(x => x.ID == id);
+            if (spotter == null) return NotFound();
 
             context.Spotters.Remove(spotter);
             context.SaveChanges();
