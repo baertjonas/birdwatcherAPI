@@ -44,6 +44,8 @@ namespace birdwatcherAPI
         [HttpPost]
         public IActionResult CreateVogel([FromBody] Vogel vogel)
         {
+            if (!ModelState.IsValid) return BadRequest(ModelState);
+
             context.Vogels.Add(vogel);
             context.SaveChanges();
             return Created("", vogel);
@@ -68,6 +70,8 @@ namespace birdwatcherAPI
         [HttpPut]
         public IActionResult UpdateVogel([FromBody] Vogel vgl)
         {
+            if (!ModelState.IsValid) return BadRequest(ModelState);
+
             var orgVogel = context.Vogels.Find(vgl.ID);
             if (orgVogel == null)
                 return NotFound();

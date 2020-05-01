@@ -109,7 +109,7 @@ namespace birdwatcherAPI.Controllers
         [HttpPost]
         public IActionResult CreateWaarneming([FromBody] Waarneming waarneming)
         {
-            if (!ModelState.IsValid) return BadRequest(); //TODO modelstate meegeven
+            if (!ModelState.IsValid) return BadRequest(ModelState); //TODO modelstate meegeven
 
             // check of de vogel al bestaat in de database
             var vogel = context.Vogels
@@ -150,6 +150,8 @@ namespace birdwatcherAPI.Controllers
         [HttpPut]
         public IActionResult UpdateWaarneming([FromBody] Waarneming waarneming)
         {
+            if (!ModelState.IsValid) return BadRequest(ModelState);
+
             var orgWaarneming = context.Waarnemingen.Find(waarneming.ID);
 
             if (orgWaarneming == null)

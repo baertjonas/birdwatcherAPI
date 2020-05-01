@@ -45,6 +45,8 @@ namespace birdwatcherAPI.Controllers
         [HttpPost]
         public IActionResult CreateSpotter([FromBody] Spotter spotter)
         {
+            if (!ModelState.IsValid) return BadRequest(ModelState);
+
             context.Spotters.Add(spotter);
             context.SaveChanges();
             return Created("", spotter);
@@ -67,6 +69,8 @@ namespace birdwatcherAPI.Controllers
         [HttpPut]
         public IActionResult UpdateSpotter([FromBody] Spotter spotter)
         {
+            if (!ModelState.IsValid) return BadRequest(ModelState);
+
             var orgSpotter = context.Spotters.Find(spotter.ID);
             if (orgSpotter == null)
                 return NotFound();
