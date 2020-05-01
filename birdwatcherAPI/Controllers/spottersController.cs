@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using birdwatcherAPI.Model;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace birdwatcherAPI.Controllers
 {
+    [DisableCors]
     [Route("api/[controller]")]
     public class spottersController : Controller
     {
@@ -34,7 +36,6 @@ namespace birdwatcherAPI.Controllers
         {
             var spotter = context.Spotters
                 .SingleOrDefault(x => x.ID == id);
-
             if (spotter == null) return NotFound();
 
             return Ok(spotter);
@@ -44,6 +45,8 @@ namespace birdwatcherAPI.Controllers
         [HttpPost]
         public IActionResult CreateSpotter([FromBody] Spotter spotter)
         {
+            if (!ModelState.IsValid) return BadRequest(ModelState);
+
             context.Spotters.Add(spotter);
             context.SaveChanges();
             return Created("", spotter);
@@ -53,9 +56,9 @@ namespace birdwatcherAPI.Controllers
         [HttpDelete("{id}")]
         public IActionResult DeleteSpotter(int id)
         {
-            var spotter = context.Spotters.Find(id);
-            if (spotter == null)
-                return NotFound();
+            var spotter = context.Spotters
+                .SingleOrDefault(x => x.ID == id);
+            if (spotter == null) return NotFound();
 
             context.Spotters.Remove(spotter);
             context.SaveChanges();
@@ -66,6 +69,8 @@ namespace birdwatcherAPI.Controllers
         [HttpPut]
         public IActionResult UpdateSpotter([FromBody] Spotter spotter)
         {
+            if (!ModelState.IsValid) return BadRequest(ModelState);
+
             var orgSpotter = context.Spotters.Find(spotter.ID);
             if (orgSpotter == null)
                 return NotFound();

@@ -1,0 +1,7 @@
+{
+  "name": "birdwatcher",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

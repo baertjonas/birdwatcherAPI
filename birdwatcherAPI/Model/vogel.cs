@@ -13,7 +13,7 @@ namespace birdwatcherAPI.Model
 
         public int ID { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Naam is required")]
         public string Naam { get; set; }
 
         public string Latijns { get; set; }

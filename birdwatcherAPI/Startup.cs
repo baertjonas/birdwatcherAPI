@@ -54,12 +54,18 @@ namespace birdwatcherAPI
 
             app.UseAuthorization();
 
+            app.UseCors(builder =>
+                builder.WithOrigins("http://localhost:8100")
+                       .AllowAnyMethod()
+                       .AllowAnyHeader());
+
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
             });
 
-            DBInitializer.Initialize(context);
+            DBInitializer.Initialize(context);          
+                    
         }
     }
 }

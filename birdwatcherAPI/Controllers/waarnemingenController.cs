@@ -5,9 +5,11 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using birdwatcherAPI.Model;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Cors;
 
 namespace birdwatcherAPI.Controllers
 {
+    [DisableCors]
     [Route("api/[controller]")]
     public class waarnemingenController : Controller
     {
@@ -107,7 +109,7 @@ namespace birdwatcherAPI.Controllers
         [HttpPost]
         public IActionResult CreateWaarneming([FromBody] Waarneming waarneming)
         {
-            if (!ModelState.IsValid) return BadRequest();
+            if (!ModelState.IsValid) return BadRequest(ModelState); //TODO modelstate meegeven
 
             // check of de vogel al bestaat in de database
             var vogel = context.Vogels
@@ -134,7 +136,8 @@ namespace birdwatcherAPI.Controllers
         [HttpDelete("{id}")]
         public IActionResult DeleteWaarneming (int id)
         {
-            var waarneming = context.Waarnemingen.Find(id);
+            var waarneming = context.Waarnemingen
+                .SingleOrDefault(x => x.ID == id);
             if (waarneming == null)
                 return NotFound();
 
@@ -147,6 +150,8 @@ namespace birdwatcherAPI.Controllers
         [HttpPut]
         public IActionResult UpdateWaarneming([FromBody] Waarneming waarneming)
         {
+            if (!ModelState.IsValid) return BadRequest(ModelState);
+
             var orgWaarneming = context.Waarnemingen.Find(waarneming.ID);
 
             if (orgWaarneming == null)

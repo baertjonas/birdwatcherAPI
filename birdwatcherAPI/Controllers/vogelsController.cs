@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using birdwatcherAPI.Model;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Cors;
 
 namespace birdwatcherAPI
 {
@@ -34,7 +35,6 @@ namespace birdwatcherAPI
         {
             var vogel = context.Vogels
                 .SingleOrDefault(x => x.ID == id);
-
             if (vogel == null) return NotFound();
 
             return Ok(vogel);
@@ -44,6 +44,8 @@ namespace birdwatcherAPI
         [HttpPost]
         public IActionResult CreateVogel([FromBody] Vogel vogel)
         {
+            if (!ModelState.IsValid) return BadRequest(ModelState);
+
             context.Vogels.Add(vogel);
             context.SaveChanges();
             return Created("", vogel);
@@ -53,7 +55,9 @@ namespace birdwatcherAPI
         [HttpDelete("{id}")]
         public IActionResult DeleteVogel(int id)
         {
-            var vogel = context.Vogels.Find(id);
+            var vogel = context.Vogels
+                .SingleOrDefault(x => x.ID == id);
+
             if (vogel == null)
                 return NotFound();
 
@@ -66,6 +70,8 @@ namespace birdwatcherAPI
         [HttpPut]
         public IActionResult UpdateVogel([FromBody] Vogel vgl)
         {
+            if (!ModelState.IsValid) return BadRequest(ModelState);
+
             var orgVogel = context.Vogels.Find(vgl.ID);
             if (orgVogel == null)
                 return NotFound();
