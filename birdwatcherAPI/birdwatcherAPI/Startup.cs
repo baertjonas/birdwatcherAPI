@@ -52,10 +52,13 @@ namespace birdwatcherAPI
 
             app.UseRouting();
 
-            app.UseAuthorization();
+            app.UseAuthentication(); //AUTHENTICATION
+
+            app.UseAuthorization(); //AUTHORIZATION
 
             app.UseCors(builder =>
-                builder.WithOrigins("http://localhost:8100")
+                builder.WithOrigins("http://localhost:4200")
+                       .WithOrigins("http://192.168.1.43:8100")
                        .AllowAnyMethod()
                        .AllowAnyHeader());
 

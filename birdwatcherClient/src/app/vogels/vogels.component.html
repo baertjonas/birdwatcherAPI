@@ -1,0 +1,34 @@
+<br>
+<br>
+<br>
+<form novalidate>
+    <div>
+        <label>ID</label>
+        <input type="number" [(ngModel)]="vogel.id" [ngModelOptions]={standalone:true}>
+    </div>  
+    <div>
+        <label>Naam</label>
+        <input type="text" required [(ngModel)]="vogel.naam" [ngModelOptions]={standalone:true}>
+    </div> 
+    <div>
+        <label>Latijnse naam</label>
+        <input type="text" [(ngModel)]="vogel.latijns" [ngModelOptions]={standalone:true}>
+    </div>
+    <div>
+        <label>Franse naam</label>
+        <input type="text" [(ngModel)]="vogel.frans" [ngModelOptions]={standalone:true}>
+    </div>
+    <div>
+        <label>Engelse naam</label>
+        <input type="text" [(ngModel)]="vogel.engels" [ngModelOptions]={standalone:true}>
+    </div>
+    <div>
+        <label>Duitse naam</label>
+        <input type="text" [(ngModel)]="vogel.duits" [ngModelOptions]={standalone:true}>
+    </div>
+    <button (click)=reset()>Reset</button>  
+    <button (click)=post() expand="block">Add</button>
+    <button *ngIf="vogel.id != 0" (click)=getById()>Get ID {{vogel.id}}</button>
+    <button *ngIf="vogel.id != 0" (click)=put()>Edit ID {{vogel.id}}</button>
+    <button *ngIf="vogel.id != 0" (click)=delete()>Delete ID {{vogel.id}}</button>
+</form>
