@@ -1,6 +1,6 @@
 #1 - build the app in a node container
 FROM node:14.1.0-alpine as node
-WORKDIR /usr/scr/app
+WORKDIR /usr/src/app
 COPY package*.json ./
 RUN npm install
 COPY . .
