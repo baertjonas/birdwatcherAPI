@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using birdwatcherAPI.Model;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Cors;
+using Microsoft.AspNetCore.Authorization;
 
 namespace birdwatcherAPI
 {
@@ -42,6 +43,7 @@ namespace birdwatcherAPI
 
         // POST api/vogels
         [HttpPost]
+        //[Authorize]
         public IActionResult CreateVogel([FromBody] Vogel vogel)
         {
             if (!ModelState.IsValid) return BadRequest(ModelState);
@@ -53,6 +55,7 @@ namespace birdwatcherAPI
 
         // DELETE api/vogels
         [HttpDelete("{id}")]
+        [Authorize]
         public IActionResult DeleteVogel(int id)
         {
             var vogel = context.Vogels
@@ -68,6 +71,7 @@ namespace birdwatcherAPI
 
         // PUT api/vogels
         [HttpPut]
+        //[Authorize]
         public IActionResult UpdateVogel([FromBody] Vogel vgl)
         {
             if (!ModelState.IsValid) return BadRequest(ModelState);

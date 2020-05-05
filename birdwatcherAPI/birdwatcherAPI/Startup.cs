@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using birdwatcherAPI.Model;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -36,6 +37,13 @@ namespace birdwatcherAPI
             {
                 options.SuppressModelStateInvalidFilter = true;
             });
+
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+                .AddJwtBearer(options =>
+                {
+                    options.Authority = "https://accounts.google.com"; //uitgever van het token
+                    options.Audience = "569100850047-a0elc52joq46qbc7u259i5ptb5fokmlf.apps.googleusercontent.com"; //client-id
+                });
 
             services.AddControllers();
         }

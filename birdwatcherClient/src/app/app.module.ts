@@ -11,6 +11,7 @@ import { VogelsComponent } from './vogels/vogels.component';
 
 import { SocialLoginModule } from 'angularx-social-login';
 import { AuthServiceConfig, GoogleLoginProvider } from 'angularx-social-login';
+import { WaarnemingenComponent } from './waarnemingen/waarnemingen.component';
 
 const config = new AuthServiceConfig([
   {
@@ -28,7 +29,8 @@ export function provideConfig() {
     AppComponent,
     NavbarComponent,
     AanmeldenComponent,
-    VogelsComponent
+    VogelsComponent,
+    WaarnemingenComponent
   ],
   imports: [
     BrowserModule,
