@@ -1,3 +1,4 @@
 # birdwatcherAPI
 birdwatcherAPI
-birdwatcherIONIC
+birdwatcherClient
+birdwatcherIonic
