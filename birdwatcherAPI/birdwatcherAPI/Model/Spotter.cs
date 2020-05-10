@@ -13,10 +13,10 @@ namespace birdwatcherAPI.Model
 
         public int ID { get; set; }
 
-        [Required(ErrorMessage = "Voornaam is required")]
+        [Required(ErrorMessage = "Voornaam is verplicht.")]
         public string Voornaam { get; set; }
 
-        [Required(ErrorMessage = "Achternaam is required")]
+        [Required(ErrorMessage = "Achternaam is verplicht.")]
         public string Achternaam { get; set; }
 
         public string Straat { get; set; }
@@ -27,7 +27,7 @@ namespace birdwatcherAPI.Model
 
         public string Gemeente { get; set; }
 
-        [EmailAddress(ErrorMessage = "Email is not valid")]
+        [EmailAddress(ErrorMessage = "Email is niet in het geldige formaat.")]
         public string Email { get; set; }
 
         [JsonIgnore]

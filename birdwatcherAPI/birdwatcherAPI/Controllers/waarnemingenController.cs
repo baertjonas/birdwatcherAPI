@@ -9,7 +9,6 @@ using Microsoft.AspNetCore.Cors;
 
 namespace birdwatcherAPI.Controllers
 {
-    [DisableCors]
     [Route("api/[controller]")]
     public class waarnemingenController : Controller
     {
@@ -27,11 +26,11 @@ namespace birdwatcherAPI.Controllers
             IQueryable<Waarneming> query = context.Waarnemingen;
 
             if (!string.IsNullOrWhiteSpace(VogelNaam))
-                query = query.Where(x => x.Vogel.Naam == VogelNaam);
+                query = query.Where(x => x.Vogel.Naam.Contains(VogelNaam));
             if (!string.IsNullOrWhiteSpace(SpotterVoornaam))
-                query = query.Where(x => x.Spotter.Voornaam == SpotterVoornaam);
+                query = query.Where(x => x.Spotter.Voornaam.Contains(SpotterVoornaam));
             if (!string.IsNullOrWhiteSpace(SpotterAchternaam))
-                query = query.Where(x => x.Spotter.Achternaam == SpotterAchternaam);
+                query = query.Where(x => x.Spotter.Achternaam.Contains(SpotterAchternaam));
 
             if (!string.IsNullOrWhiteSpace(sort))
             {
@@ -83,9 +82,10 @@ namespace birdwatcherAPI.Controllers
             }
             query = query.Take(length);
 
-            query = query.Include(x => x.Vogel).Include(x => x.Spotter);
+            query = query.Include(x => x.Vogel).Include(x => x.Spotter).Include(x => x.Vogel.Familie);
 
-            if (query.ToList().Count() == 0) return NotFound("De query leverde geen resultaten.");
+            // if (query.ToList().Count() == 0) return NotFound("De query leverde geen resultaten.");
+            // => QUERY MAG EEN LEGE LIJST TERUGGEVEN => WORDT OPGEVANGEN IN CLIENT
 
             return Ok(query);
         }   

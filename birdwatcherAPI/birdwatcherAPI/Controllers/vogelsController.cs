@@ -43,7 +43,8 @@ namespace birdwatcherAPI
 
         // POST api/vogels
         [HttpPost]
-        //[Authorize]
+        [AllowAnonymous]
+        [Authorize]
         public IActionResult CreateVogel([FromBody] Vogel vogel)
         {
             if (!ModelState.IsValid) return BadRequest(ModelState);
@@ -55,8 +56,8 @@ namespace birdwatcherAPI
 
         // DELETE api/vogels
         [HttpDelete("{id}")]
-        [Authorize]
         [AllowAnonymous]
+        [Authorize]
         public IActionResult DeleteVogel(int id)
         {
             
@@ -74,7 +75,8 @@ namespace birdwatcherAPI
 
         // PUT api/vogels
         [HttpPut]
-        //[Authorize]
+        [AllowAnonymous]
+        [Authorize]
         public IActionResult UpdateVogel([FromBody] Vogel vgl)
         {
             if (!ModelState.IsValid) return BadRequest(ModelState);
@@ -88,6 +90,7 @@ namespace birdwatcherAPI
             orgVogel.Frans = vgl.Frans;
             orgVogel.Engels = vgl.Engels;
             orgVogel.Duits = vgl.Duits;
+            orgVogel.FamilieID = vgl.FamilieID;
 
             context.SaveChanges();
             return Ok(orgVogel);

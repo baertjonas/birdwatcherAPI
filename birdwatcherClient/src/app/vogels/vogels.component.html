@@ -26,9 +26,15 @@
         <label>Duitse naam</label>
         <input type="text" [(ngModel)]="vogel.duits" [ngModelOptions]={standalone:true}>
     </div>
+    <div>
+        <label>Familie</label>
+        <input type="number" [(ngModel)]="vogel.familieID" [ngModelOptions]={standalone:true}>
+    </div>
     <button (click)=reset()>Reset</button>  
     <button (click)=post() expand="block">Add</button>
     <button *ngIf="vogel.id != 0" (click)=getById()>Get ID {{vogel.id}}</button>
     <button *ngIf="vogel.id != 0" (click)=put()>Edit ID {{vogel.id}}</button>
     <button *ngIf="vogel.id != 0" (click)=delete()>Delete ID {{vogel.id}}</button>
 </form>
+<br>
+<img src="{{imgURL}}">

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Text.Json.Serialization;
 
 namespace birdwatcherAPI.Model
@@ -12,6 +13,7 @@ namespace birdwatcherAPI.Model
 
         public int ID { get; set; }
 
+        [Required(ErrorMessage = "Een familie is verplicht.")]
         public string Naam { get; set; }
 
         [JsonIgnore]

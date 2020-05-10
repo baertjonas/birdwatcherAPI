@@ -14,7 +14,7 @@ namespace birdwatcherAPI.Model
 
         public int ID { get; set; }
 
-        [Required(ErrorMessage = "Naam is required")]
+        [Required(ErrorMessage = "Een naam is verplicht.")]
         public string Naam { get; set; }
 
         public string Latijns { get; set; }
@@ -29,7 +29,7 @@ namespace birdwatcherAPI.Model
         public ICollection<Waarneming> Waarnemingen { get; set; }
 
         [ForeignKey("Familie")]
-        //[Required(ErrorMessage = "FamilieID is required")]
+        [Required(ErrorMessage = "Een familieID is verplicht.")]
         public int? FamilieID { get; set; }
 
         public Familie Familie { get; set; }

@@ -1,9 +1,45 @@
-<p>waarnemingen works!</p>
-<p>waarnemingen works!</p>
-<p>waarnemingen works!</p>
-<img src="{{ user.photoUrl }}">
-<div>
-  <h4>{{ user.name }}</h4>
-  <p>{{ user.email }}</p>
+<br>
+<br>
+<br>
+<table>
+  <thead>
+    <tr>
+      <th>Datum</th>
+      <th>Vogel</th>
+      <th>Geslacht</th>
+      <th>Locatie (lengte)</th>
+      <th>Locatie (breedte)</th>
+      <th>Spotter</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let item of waarnemingen">
+      <td>{{item.datumTijd | date:"MM/dd/yy" }}</td>
+      <td>{{item.vogel.naam}}</td>
+      <td>{{item.geslacht}}</td>
+      <td>{{item.geoBreedte}}</td>
+      <td>{{item.geoLengte}}</td>
+      <td>{{item.spotter.voornaam}} {{item.spotter.achternaam}}</td>
+      <td></td>
+    </tr>  
+  </tbody>
+</table>
+<br>
+<p>Zoekresultaten verfijnen</p>
+<div> 
+    <label>Vogelnaam: </label>
+    <input type="text" [(ngModel)]="vogel" (ngModelChange)="dataChange($event)" [ngModelOptions]={standalone:true}>
 </div>
+<div>
+  <label>Spotter (voornaam):</label>
+  <input type="text" [(ngModel)]="voornaam" (ngModelChange)="dataChange($event)" [ngModelOptions]={standalone:true}>
+</div>
+<div>
+  <label>Spotter (achternaam):</label>
+  <input type="text" [(ngModel)]="achternaam" (ngModelChange)="dataChange($event)" [ngModelOptions]={standalone:true}>
+</div>
+<button (click)=previousPage()>Vorige pagina</button>
+{{page}}
+<button (click)=nextPage()>Volgende pagina</button> 
+    
 

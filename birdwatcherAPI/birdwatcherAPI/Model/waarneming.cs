@@ -24,7 +24,7 @@ namespace birdwatcherAPI.Model
         //[RegularExpression(@"[NS]([0]?[0-8]?[0-9]|9[0])[°]\d{1,2}[']\d{0,2}[.]\d{0,3}[\p{Pi}]", ErrorMessage = "Breedtegraad is not valid")]
         // in .NET is het niet mogelijk om " als karakter mee te geven, ook niet met \" -> daarom gebruik maken van DD
         // DD: -90.000000° <-> 90.000000°
-        [Range(-90.00, 90.00, ErrorMessage = "Lengtegraad moet tussen -90° en 90° liggen")]
+        [Range(-90.00, 90.00, ErrorMessage = "De de breedtegraad moet tussen -90° en 90° liggen.")]
         public double GeoBreedte { get; set; }
 
         // DMS: W41°24'12.2" 
@@ -32,17 +32,17 @@ namespace birdwatcherAPI.Model
         //[RegularExpression(@"[WE]([0][0-9][0-9]|1[0-7][0-9]|18[0])[°]\d{1,2}[']\d{0,2}[.]\d{0,3}[\p{Pi}]", ErrorMessage = "Lengtegraad is not valid")]
         // in .NET is het niet mogelijk om " als karakter mee te geven, ook niet met \" -> daarom gebruik maken van DD
         // DD: -180.000000° <-> 180.000000°
-        [Range(-180.00,180.00, ErrorMessage = "Lengtegraad moet tussen -180° en 180° liggen")]
+        [Range(-180.00,180.00, ErrorMessage = "De lengtegraad moet tussen -180° en 180° liggen.")]
         public double GeoLengte { get; set; }
 
         [ForeignKey("Vogel")]
-        [Required(ErrorMessage = "VogelID is required")]
+        [Required(ErrorMessage = "Een vogelID is verplicht.")]
         public int? VogelID { get; set; }
 
         public Vogel Vogel { get; set; }
 
         [ForeignKey("Spotter")]
-        [Required(ErrorMessage = "SpotterID is required")]
+        [Required(ErrorMessage = "Een spotterID is verplicht.")]
         public int? SpotterID { get; set; }
 
         public Spotter Spotter { get; set; }
