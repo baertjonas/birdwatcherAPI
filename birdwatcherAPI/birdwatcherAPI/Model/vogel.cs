@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Text.Json.Serialization;
 
 namespace birdwatcherAPI.Model
@@ -27,6 +28,10 @@ namespace birdwatcherAPI.Model
         [JsonIgnore]
         public ICollection<Waarneming> Waarnemingen { get; set; }
 
-        //public Familie Familie { get; set; }
+        [ForeignKey("Familie")]
+        //[Required(ErrorMessage = "FamilieID is required")]
+        public int? FamilieID { get; set; }
+
+        public Familie Familie { get; set; }
     }
 }

@@ -15,6 +15,6 @@ namespace birdwatcherAPI.Model
 
         public DbSet<Waarneming> Waarnemingen { get; set; }
 
-        //public DbSet<Familie> Families { get; set; }
+        public DbSet<Familie> Families { get; set; }
     }
 }

@@ -56,8 +56,11 @@ namespace birdwatcherAPI
         // DELETE api/vogels
         [HttpDelete("{id}")]
         [Authorize]
+        [AllowAnonymous]
         public IActionResult DeleteVogel(int id)
         {
+            
+
             var vogel = context.Vogels
                 .SingleOrDefault(x => x.ID == id);
 

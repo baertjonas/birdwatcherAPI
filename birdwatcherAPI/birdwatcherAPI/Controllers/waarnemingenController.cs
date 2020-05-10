@@ -33,14 +33,6 @@ namespace birdwatcherAPI.Controllers
             if (!string.IsNullOrWhiteSpace(SpotterAchternaam))
                 query = query.Where(x => x.Spotter.Achternaam == SpotterAchternaam);
 
-            if (page.HasValue)
-            {
-                query = query.Skip(page.Value * length);
-            }
-            query = query.Take(length);
-            
-            query = query.Include(x => x.Vogel).Include(x => x.Spotter);
-
             if (!string.IsNullOrWhiteSpace(sort))
             {
                 switch (sort)
@@ -85,11 +77,18 @@ namespace birdwatcherAPI.Controllers
                 }
             }
 
+            if (page.HasValue)
+            {
+                query = query.Skip(page.Value * length);
+            }
+            query = query.Take(length);
+
+            query = query.Include(x => x.Vogel).Include(x => x.Spotter);
+
             if (query.ToList().Count() == 0) return NotFound("De query leverde geen resultaten.");
 
             return Ok(query);
         }   
-
         
         // GET api/waarnemingen/ID -> zoek een bepaalde waarneming met ID
         [HttpGet("{id}")]

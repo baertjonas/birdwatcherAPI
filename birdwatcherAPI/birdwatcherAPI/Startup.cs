@@ -38,6 +38,13 @@ namespace birdwatcherAPI
                 options.SuppressModelStateInvalidFilter = true;
             });
 
+            //services.AddAuthentication()
+            //    .AddGoogle(options =>
+            //    {
+            //        options.ClientId = "";
+            //        options.ClientSecret = "";
+            //    });
+
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(options =>
                 {

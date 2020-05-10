@@ -13,18 +13,18 @@ namespace birdwatcherAPI.Model
             context.Database.EnsureCreated();
 
             //zijn er al families?
-            //if (!context.Families.Any())
-            //{
-            //    //create new Waarneming
-            //    var FAM = new Familie()
-            //    {
-            //        FamilieNaam = "Roofvogel"
-            //};
-            ////add Familie to the database
-            //context.Families.Add(FAM);
-            ////save changes to the database
-            //context.SaveChanges();
-            //}
+            if (!context.Families.Any())
+            {
+                //create new Waarneming
+                var FAM = new Familie()
+                {
+                    Naam = "Roofvogel"
+                };
+                //add Familie to the database
+                context.Families.Add(FAM);
+                //save changes to the database
+                context.SaveChanges();
+            }
 
             //zijn er al vogels?
             if (!context.Vogels.Any())
@@ -36,8 +36,8 @@ namespace birdwatcherAPI.Model
                     Latijns = "Oriolus oriolus",
                     Frans = "Loriot d'Europe",
                     Engels = "Eurasion Golden Oriole",
-                    Duits = "Pirol"
-                    //Familie = context.Families.Find(1)
+                    Duits = "Pirol",
+                    Familie = context.Families.Find(1)
                 };
                 var VGL2 = new Vogel()
                 {
@@ -45,8 +45,8 @@ namespace birdwatcherAPI.Model
                     Latijns = "Chlidonias niger",
                     Frans = "Guifette noire",
                     Engels = "Black Tern",
-                    Duits = "Trauerseeschwalbe"
-                    //Familie = context.Families.Find(1)
+                    Duits = "Trauerseeschwalbe",
+                    Familie = context.Families.Find(1)
                 };
                 //vogel toevoegen
                 context.Vogels.Add(VGL1);
