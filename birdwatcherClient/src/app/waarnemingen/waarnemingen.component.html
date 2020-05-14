@@ -40,6 +40,16 @@
 </div>
 <button (click)=previousPage()>Vorige pagina</button>
 {{page}}
-<button (click)=nextPage()>Volgende pagina</button> 
+<button (click)=nextPage()>Volgende pagina</button>
+ | 
+
+<label for="sorteren">Waarnemingen sorteren:</label>
+<select id="sorteren" [(ngModel)]="sort" (ngModelChange)="dataChange($event)">
+  <option value="">Niet sorteren</option>
+  <option value="VogelNaam">Vogel</option>
+  <option value="SpotterAchternaam">Achternaam spotter</option>
+  <option value="SpotterVoornaam">Voornaam spotter</option>
+  <option value="DatumTijd">Datum en tijd</option>
+</select>
     
 

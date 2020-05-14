@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using birdwatcherAPI.Model;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Cors;
+using Microsoft.AspNetCore.Authorization;
 
 namespace birdwatcherAPI.Controllers
 {
@@ -20,6 +21,7 @@ namespace birdwatcherAPI.Controllers
         }
 
         // GET: api/waarnemingen -> alle waarnemingen
+        [Authorize]
         [HttpGet]
         public IActionResult GetWaarneming(string VogelNaam, string SpotterVoornaam, string SpotterAchternaam, int? page, string sort, int length = 10, string dir = "asc")
         {
@@ -38,39 +40,39 @@ namespace birdwatcherAPI.Controllers
                 {
                     case "VogelNaam":
                         if (dir == "asc") {
-                            query.OrderBy(d => d.Vogel.Naam);
+                            query = query.OrderBy(d => d.Vogel.Naam);
                         } else if (dir == "desc") {
-                            query.OrderByDescending(d => d.Vogel.Naam);
+                            query = query.OrderByDescending(d => d.Vogel.Naam);
                         }
                         break;
                     case "SpotterAchternaam":
                         if (dir == "asc")
                         {
-                            query.OrderBy(d => d.Spotter.Achternaam);
+                            query = query.OrderBy(d => d.Spotter.Achternaam);
                         }
                         else if (dir == "desc")
                         {
-                            query.OrderByDescending(d => d.Spotter.Achternaam);
+                            query = query.OrderByDescending(d => d.Spotter.Achternaam);
                         }
                         break;
                     case "SpotterVoornaam":
                         if (dir == "asc")
                         {
-                            query.OrderBy(d => d.Spotter.Voornaam);
+                            query = query.OrderBy(d => d.Spotter.Voornaam);
                         }
                         else if (dir == "desc")
                         {
-                            query.OrderByDescending(d => d.Spotter.Voornaam);
+                            query = query.OrderByDescending(d => d.Spotter.Voornaam);
                         }
                         break;
                     case "DatumTijd":
                         if (dir == "asc")
                         {
-                            query.OrderBy(d => d.DatumTijd);
+                            query = query.OrderBy(d => d.DatumTijd);
                         }
                         else if (dir == "desc")
                         {
-                            query.OrderByDescending(d => d.DatumTijd);
+                            query = query.OrderByDescending(d => d.DatumTijd);
                         }
                         break;
                 }

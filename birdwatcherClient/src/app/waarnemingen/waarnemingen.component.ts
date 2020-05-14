@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient , HttpHeaders, HttpClientModule } from '@angular/common/http';
 import { AppModule } from '../app.module';
+import { AuthService } from "angularx-social-login";
+import { SocialUser } from "angularx-social-login";
 
 @Component({
   selector: 'app-waarnemingen',
@@ -13,9 +15,14 @@ export class WaarnemingenComponent implements OnInit {
   voornaam: String = "";
   achternaam: String = "";
   vogel: String = "";
-  page: number = 0; 
+  page: number = 0;
+  //sort: Array<String> = ["", "VogelNaam", "SpotterAchternaam", "SpotterVoornaam", "DatumTijd"];
+  sort: String = "";
 
-  constructor(private http: HttpClient) {
+  user: SocialUser;
+  loggedIn: boolean;
+
+  constructor(private http: HttpClient, private authService: AuthService) {
   }
 
   previousPage() {
@@ -34,10 +41,14 @@ export class WaarnemingenComponent implements OnInit {
   }
 
   get() {
+    var header = new HttpHeaders({"Authorization":"Bearer " +this.user.idToken});
+    var options= {headers: header};
+
     this.http.get("https://localhost:5001/api/waarnemingen?VogelNaam="+this.vogel
         +"&SpotterVoornaam="+this.voornaam
         +"&SpotterAchternaam="+this.achternaam
-        +"&page="+this.page)
+        +"&page="+this.page
+        +"&sort="+this.sort, options)
       .subscribe((data: Array<IWaarneming>) => {
         this.waarnemingen = data;
         console.log(data);
@@ -48,8 +59,15 @@ export class WaarnemingenComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.authService.authState.subscribe((user) => {
+      this.user = user;
+      this.loggedIn = (user != null);
+    });
+
     this.get();
   }
+
+  
 
 }
 

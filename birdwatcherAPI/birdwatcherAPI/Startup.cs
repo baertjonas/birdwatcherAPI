@@ -13,6 +13,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Microsoft.IdentityModel.Tokens;
 
 namespace birdwatcherAPI
 {
@@ -28,8 +29,14 @@ namespace birdwatcherAPI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            //services.AddDbContext<BirdwatcherContext>(
+            //    options => options.UseSqlite(Configuration.GetConnectionString("DefaultConnection")
+            //    )
+            //);
+
             services.AddDbContext<BirdwatcherContext>(
-                options => options.UseSqlite(Configuration.GetConnectionString("DefaultConnection")
+                options => options.UseMySQL(
+                    Configuration.GetConnectionString("DefaultConnection")
                 )
             );
 
@@ -38,19 +45,18 @@ namespace birdwatcherAPI
                 options.SuppressModelStateInvalidFilter = true;
             });
 
-            //services.AddAuthentication()
-            //    .AddGoogle(options =>
-            //    {
-            //        options.ClientId = "";
-            //        options.ClientSecret = "";
-            //    });
 
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-                .AddJwtBearer(options =>
+            .AddJwtBearer(options =>
+            {
+                options.Authority = "https://accounts.google.com"; //uitgever van het token
+                options.Audience = "770599447037-lp0oo9sl51718eimbps29v7oqk39719j.apps.googleusercontent.com"; //client-id
+                options.TokenValidationParameters = new TokenValidationParameters()
                 {
-                    options.Authority = "https://accounts.google.com"; //uitgever van het token
-                    options.Audience = "569100850047-a0elc52joq46qbc7u259i5ptb5fokmlf.apps.googleusercontent.com"; //client-id
-                });
+                    ValidateAudience = true,
+                    ValidIssuer = "accounts.google.com"
+                };
+            });
 
             services.AddControllers();
         }
@@ -73,7 +79,7 @@ namespace birdwatcherAPI
 
             app.UseCors(builder =>
                 builder.WithOrigins("http://localhost:4200")
-                       .WithOrigins("http://192.168.1.43:8100")
+                       .WithOrigins("http://192.168.1.43:4200")
                        .AllowAnyMethod()
                        .AllowAnyHeader());
 

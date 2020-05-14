@@ -23,6 +23,7 @@ namespace birdwatcherAPI
         [HttpGet]
         public IActionResult Get()
         {
+          
             var vogel = context.Vogels;
 
             if (vogel == null) return NotFound();
@@ -43,8 +44,6 @@ namespace birdwatcherAPI
 
         // POST api/vogels
         [HttpPost]
-        [AllowAnonymous]
-        [Authorize]
         public IActionResult CreateVogel([FromBody] Vogel vogel)
         {
             if (!ModelState.IsValid) return BadRequest(ModelState);
@@ -56,8 +55,6 @@ namespace birdwatcherAPI
 
         // DELETE api/vogels
         [HttpDelete("{id}")]
-        [AllowAnonymous]
-        [Authorize]
         public IActionResult DeleteVogel(int id)
         {
             
@@ -75,8 +72,6 @@ namespace birdwatcherAPI
 
         // PUT api/vogels
         [HttpPut]
-        [AllowAnonymous]
-        [Authorize]
         public IActionResult UpdateVogel([FromBody] Vogel vgl)
         {
             if (!ModelState.IsValid) return BadRequest(ModelState);

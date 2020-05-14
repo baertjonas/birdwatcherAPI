@@ -17,7 +17,7 @@ import { SpottersComponent } from './spotters/spotters.component';
 const config = new AuthServiceConfig([
   {
     id: GoogleLoginProvider.PROVIDER_ID,
-    provider: new GoogleLoginProvider('569100850047-a0elc52joq46qbc7u259i5ptb5fokmlf.apps.googleusercontent.com')
+    provider: new GoogleLoginProvider('770599447037-lp0oo9sl51718eimbps29v7oqk39719j.apps.googleusercontent.com')
   }
 ]);
 
