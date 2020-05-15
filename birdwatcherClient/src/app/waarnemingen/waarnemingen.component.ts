@@ -22,6 +22,8 @@ export class WaarnemingenComponent implements OnInit {
   user: SocialUser;
   loggedIn: boolean;
 
+  URL: String = "https://birdwatchertest-277214.ew.r.appspot.com/api"
+
   constructor(private http: HttpClient, private authService: AuthService) {
   }
 
@@ -44,7 +46,7 @@ export class WaarnemingenComponent implements OnInit {
     var header = new HttpHeaders({"Authorization":"Bearer " +this.user.idToken});
     var options= {headers: header};
 
-    this.http.get("https://localhost:5001/api/waarnemingen?VogelNaam="+this.vogel
+    this.http.get(this.URL+"/waarnemingen?VogelNaam="+this.vogel
         +"&SpotterVoornaam="+this.voornaam
         +"&SpotterAchternaam="+this.achternaam
         +"&page="+this.page

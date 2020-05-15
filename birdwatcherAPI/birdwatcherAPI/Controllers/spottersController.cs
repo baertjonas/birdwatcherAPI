@@ -8,8 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace birdwatcherAPI.Controllers
-{
-    [DisableCors]
+{ 
     [Route("api/[controller]")]
     public class spottersController : Controller
     {

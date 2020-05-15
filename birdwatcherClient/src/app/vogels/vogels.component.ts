@@ -16,6 +16,8 @@ export class VogelsComponent implements OnInit {
   imgURL: String;
   errorResponse: IErrorResponse;
 
+  URL: String = "https://birdwatchertest-277214.ew.r.appspot.com/api"
+
   constructor(private http: HttpClient) {
     this.vogel = { id: 0, naam: "", latijns: "", frans: "", engels: "", duits: "", familieID: 0};
   }
@@ -32,7 +34,7 @@ export class VogelsComponent implements OnInit {
 
     var header = new HttpHeaders({"Content-Type":"application/json"});
     var options= {headers: header};
-    this.http.post("https://localhost:5001/api/vogels", this.jsonVogel, options)
+    this.http.post(this.URL+"/vogels", this.jsonVogel, options)
       .subscribe((data: IVogel) => {
         this.vogel = data;
         this.getPictureFromApi(this.vogel.latijns);
@@ -47,7 +49,7 @@ export class VogelsComponent implements OnInit {
   }
 
   getById() {
-    this.http.get("https://localhost:5001/api/vogels/"+this.vogel.id)
+    this.http.get(this.URL+"/vogels/"+this.vogel.id)
       .subscribe((data: IVogel) => {
         this.vogel = data;
         this.getPictureFromApi(this.vogel.latijns);
@@ -62,7 +64,7 @@ export class VogelsComponent implements OnInit {
     this.jsonVogel = JSON.stringify(this.vogel);
     var header = new HttpHeaders({"Content-Type":"application/json"});
     var options= {headers: header};
-    this.http.put("https://localhost:5001/api/vogels", this.jsonVogel, options)
+    this.http.put(this.URL+"/vogels", this.jsonVogel, options)
       .subscribe((data: IVogel) => {
         this.vogel = data;
         this.getPictureFromApi(this.vogel.latijns);
@@ -78,7 +80,7 @@ export class VogelsComponent implements OnInit {
   }
 
   delete() {
-    this.http.delete("https://localhost:5001/api/vogels/"+this.vogel.id)
+    this.http.delete(this.URL+"/vogels/"+this.vogel.id)
       .subscribe((data: IVogel) => {
         this.reset();
         console.log("DELETE");
