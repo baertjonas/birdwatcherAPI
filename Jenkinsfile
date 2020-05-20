@@ -2,7 +2,7 @@ pipeline {
     agent {
         dockerfile {
             filename 'Dockerfile'
-            additionalBuildArgs '-t myangular'
+            additionalBuildArgs '-t myangular --no-cache'
         }
     }
     stages {
