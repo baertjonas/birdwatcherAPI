@@ -1,10 +1,8 @@
 pipeline {
-    agent { dockerfile true }
-    stages {
-        stage('Build') {
-            steps {
-                
-            }
+    agent {
+        dockerfile {
+            filename 'Dockerfile'
+            label 'myangular'
         }
-    }
+    }    
 }
