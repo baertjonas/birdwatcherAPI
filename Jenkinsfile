@@ -5,5 +5,6 @@ pipeline {
             label 'myangular'
         }
     }
-    stages {}    
+    stages('Build') {
+    }    
 }
