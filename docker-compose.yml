@@ -1,0 +1,10 @@
+version: '2.3'
+
+services:
+  angular:
+    image: angular
+    hostname: localhost
+    container_name: myangular
+    build: .
+    ports:
+      - 80:80
