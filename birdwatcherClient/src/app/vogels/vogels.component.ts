@@ -16,7 +16,7 @@ export class VogelsComponent implements OnInit {
   imgURL: String;
   errorResponse: IErrorResponse;
 
-  URL: String = "https://birdwatchertest-277214.ew.r.appspot.com/api"
+  URL: String = "https://birdwatchertest-277214.ew.r.appspot.com/api";
 
   constructor(private http: HttpClient) {
     this.vogel = { id: 0, naam: "", latijns: "", frans: "", engels: "", duits: "", familieID: 0};

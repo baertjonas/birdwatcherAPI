@@ -22,7 +22,9 @@ export class WaarnemingenComponent implements OnInit {
   user: SocialUser;
   loggedIn: boolean;
 
-  URL: String = "https://birdwatchertest-277214.ew.r.appspot.com/api"
+  URL: String = "https://birdwatchertest-277214.ew.r.appspot.com/api";
+
+  errorResponse: IErrorResponse;
 
   constructor(private http: HttpClient, private authService: AuthService) {
   }
@@ -57,6 +59,9 @@ export class WaarnemingenComponent implements OnInit {
         console.log("GET");
       }, error => {
         console.log("ERROR");
+        if (error.status == 401) {
+          alert("Je hebt geen toelating, gelieve aan te melden.");
+        }
       });
   }
 
@@ -112,3 +117,6 @@ export interface IWaarneming {
   spotter: ISpotter;
 }
 
+export interface IErrorResponse {
+  Naam: string[];
+}
