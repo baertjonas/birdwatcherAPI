@@ -5,6 +5,5 @@ services:
     image: birdwatcherclient
     hostname: localhost
     container_name: myangular
-    build: .
     ports:
       - 80:80
