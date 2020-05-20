@@ -4,5 +4,6 @@ pipeline {
             filename 'Dockerfile'
             label 'myangular'
         }
-    }    
+    }
+    stages {}    
 }
