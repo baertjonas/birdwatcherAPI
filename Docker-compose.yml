@@ -2,7 +2,7 @@ version: '2.3'
 
 services:
   angular:
-    image: angular
+    image: birdwatcherclient
     hostname: localhost
     container_name: myangular
     build: .

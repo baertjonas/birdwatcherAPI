@@ -2,7 +2,7 @@ pipeline {
     agent {
         dockerfile {
             filename 'Dockerfile'
-            additionalBuildArgs '-t myangular --no-cache'
+            additionalBuildArgs '-t birdwatcherclient --no-cache'
         }
     }
     stages {
