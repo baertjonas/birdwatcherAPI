@@ -15,9 +15,7 @@ pipeline {
         stage('Deploy') {
             agent any
             steps {
-                sh '''#!/bin/bash
-                      docker run --name myangular -p 80:80 -d birdwatcherclient
-                '''
+                sh '/usr/local/bin/docker-compose up --build'
             }
         }
         /*stage ('Deploy') {
