@@ -1,7 +1,7 @@
 pipeline {
     agent any 
     stages {
-        stage('Build') {
+        /*stage('Build') {
             agent {
                 dockerfile {
                     filename 'Dockerfile'
@@ -9,6 +9,15 @@ pipeline {
                 }
             steps {
                 echo "Building inside a nginx-container"
+            }
+        }*/
+        stage ('Deploy') {
+            agent {
+                docker {
+                    image 'birdwatcherclient'
+                    name 'myangular'
+                    ports '80:80'
+                }
             }
         }
     } 
