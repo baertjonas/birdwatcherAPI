@@ -19,6 +19,9 @@ pipeline {
                     ports '80:80'
                 }
             }
+            steps {
+                echo "Spinning up birdwatcherclient"
+            }
         }
     } 
 }
