@@ -9,14 +9,13 @@ pipeline {
                 }
             steps {
                 echo "Building inside a nginx-container"
+                sh "docker run --name myangular -p 80:80 -d birdwatcherclient"
             }
         }*/
         stage('Deploy') {
             agent any
             steps {
-                sh '''#!/bin/bash
-                docker-compose up -d
-                '''
+                sh "docker-compose up -d"
             }
         }
         /*stage ('Deploy') {
