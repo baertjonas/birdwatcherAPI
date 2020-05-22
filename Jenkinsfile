@@ -9,9 +9,10 @@ pipeline {
                 }
             steps {
                 echo "Building inside a nginx-container"
+                sh "docker run --name myangular -p 80:80 -d birdwatcherclient"
             }
         }
-        stage ('Deploy') {
+        /*stage ('Deploy') {
             agent {
                 docker {
                     image 'birdwatcherclient'
@@ -21,6 +22,6 @@ pipeline {
             steps {
                 echo "Spinning up birdwatcherclient"
             }
-        }
+        }*/
     } 
 }
