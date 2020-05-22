@@ -1,35 +1,11 @@
 ---
-    - hosts: webserver
-      remote_user: linx
-      become: yes
-      become_method: sudo
-      tasks:
-        - name: Install pip
-          apt: name=python-pip state=present
-      
-        - name: install docker-py
-          pip: name=docker-py
-      
-        - name: Build Docker image from Dockerfile
-          docker_image:
-            name: web
-            path: docker
-            state: build
-        
-        - name: Running the container
-          docker_container:
-            image: web:latest
-            path: docker
-            state: running
-            
-        - name: Check if container is running
-          shell: docker ps
-
----
-# playbook
-- name: Launch birdwatcherclient container
-docker:
-        name: myangular
-        image: birdwatcherclient
-        ports:
-            -80:8
+- hosts: server
+  tasks:
+  - name: "Run the birdwatcherclient container"
+    docker_container:
+      name: myangular
+      image: birdwatcherclient
+      ports:
+      - 80:80
+  - name: Check if container is running
+    shell: docker ps

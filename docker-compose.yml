@@ -1,9 +1,0 @@
-version: '2.3'
-
-services:
-  angular:
-    image: birdwatcherclient
-    hostname: localhost
-    container_name: myangular
-    ports:
-      - 80:80
