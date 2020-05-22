@@ -15,7 +15,9 @@ pipeline {
         stage('Deploy') {
             agent any
             steps {
-                sh 'docker-compose up -d'
+                sh '''#!/bin/bash
+                docker-compose up -d
+                '''
             }
         }
         /*stage ('Deploy') {
