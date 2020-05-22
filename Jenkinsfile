@@ -15,8 +15,7 @@ pipeline {
             agent {
                 docker {
                     image 'birdwatcherclient'
-                    name 'myangular'
-                    ports '80:80'
+                    args '-p 80:80 --name myangular -d'
                 }
             }
             steps {
