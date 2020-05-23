@@ -53,7 +53,7 @@ namespace birdwatcherAPI
             return Created("", vogel);
         }
 
-        // DELETE api/vogels
+        // DELETE api/vogels/{id}
         [HttpDelete("{id}")]
         public IActionResult DeleteVogel(int id)
         {

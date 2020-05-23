@@ -51,7 +51,7 @@ namespace birdwatcherAPI.Controllers
             return Created("", spotter);
         }
 
-        // DELETE api/spotters
+        // DELETE api/spotters/{id}
         [HttpDelete("{id}")]
         public IActionResult DeleteSpotter(int id)
         {

@@ -147,7 +147,7 @@ namespace birdwatcherAPI.Controllers
             return NoContent();
         }
 
-        // PUT api/waarmeningen/{id}
+        // PUT api/waarnemingen
         [HttpPut]
         public IActionResult UpdateWaarneming([FromBody] Waarneming waarneming)
         {
