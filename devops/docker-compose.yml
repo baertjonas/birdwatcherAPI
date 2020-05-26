@@ -1,0 +1,54 @@
+# sudo sysctl vm.max_map_count=262144
+version: '3'
+
+services:
+    elasticsearch:
+        image: sebp/elk
+        container_name: myelk
+        volumes:
+            - /home/ubuntu/Documents/birdwatcherDevOps/elk/elk-data:/var/lib/elastischsearch
+        ports:
+            - '5601:5601'
+            - '9200:9200'
+            - '5044:5044'
+        restart: always
+        environment:
+            - MAX_MAP_COUNT=262144
+        networks: 
+            - devops
+    checkmk:
+        image: checkmk/check-mk-raw:1.6.0-latest
+        container_name: mycheckmk
+        ulimits:
+            nofile:
+                soft: 1024
+                hard: 1024
+        ports:
+            - 8081:5000
+        restart: always    
+        volumes:
+            - /home/ubuntu/Documents/birdwatcherDevOps/checkmk/sites:/omd/sites
+            - /etc/localtime:/etc/localtime:ro
+        restart: always
+        networks:
+            - devops
+    jenkins:
+        image: jenkins/jenkins:lts
+        container_name: myjenkins
+        ports: 
+            - 8080:8080
+            - 50000:50000
+        privileged: true
+        restart: always
+        volumes: 
+            # persistant storage
+            - /home/ubuntu/Documents/birdwatcherDevOps/jenkins/jenkins-folder:/var/jenkins_home
+            # mount docker
+            - /var/run/docker.sock:/var/run/docker.sock
+            - /usr/bin/docker:/usr/bin/docker
+        networks: 
+            - devops 
+        
+networks:
+    devops:
+        driver: bridge
